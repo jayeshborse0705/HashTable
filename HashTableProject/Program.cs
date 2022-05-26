@@ -1,4 +1,5 @@
-﻿using  System;
+﻿using HashTable;
+using  System;
 namespace HashTableProject
 {
     public class Program
@@ -6,18 +7,22 @@ namespace HashTableProject
         public static void Main(string[] args)
         {
             Console.WriteLine("Hash Table project");
-            MyMapNode<string, string> hash = new MyMapNode<string, string>(5);
-            hash.Add("0", "To");
-            hash.Add("1", "be"); 
-            hash.Add("2", "or");
-            hash.Add("3", "not");
-            hash.Add("4", "To");
-            hash.Add("0", "be");
-            string hash5 = hash.Get("5");
-            Console.WriteLine("5th index value:"+hash5);
-            string hash2=hash.Get("2");
-            Console.WriteLine("2 th index value:"+hash2);
-
+            MyMapNode<string,int> hash = new MyMapNode<string,int>(5);
+            string phrase = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+            string[] arr1 = phrase.Split(' ');
+            // LinkedList<string> checkDuplication = new LinkedList<string>();
+            foreach (string element in arr1)
+            {
+                int value=hash.Get(element);
+                if (value==default)
+                {
+                    value=1;
+                }
+                else value +=1;
+                hash.Add(element,value);
+            }
+            int frequency = hash.Get("paranoid");
+            Console.WriteLine(frequency);
         }
 
     }
